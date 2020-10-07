@@ -6,21 +6,15 @@ var Stack = function() {
 
   let keyVal = 0;
 
-  var keyIncrementor = () => { keyVal++; };
-
-  var keyDecrementor = () => { keyVal--; };
-
   // Implement the methods below
   someInstance.push = function(value) {
     storage[keyVal] = value;
-    keyIncrementor();
-    // console.log(storage);
+    keyVal++;
   };
 
   someInstance.pop = function() {
     delete storage[keyVal];
-    keyDecrementor();
-    // console.log(storage);
+    keyVal--;
     return storage[keyVal];
   };
 

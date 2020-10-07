@@ -10,13 +10,11 @@ var Queue = function() {
 
   let oldestKey = -1;
 
-  var keyIncrementor = () => { keyVal++; };
-
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
     storage[keyVal] = value;
-    keyIncrementor();
+    keyVal++;
     size++;
   };
 
@@ -24,8 +22,6 @@ var Queue = function() {
     delete storage[oldestKey];
     oldestKey++;
     size--;
-    console.log('key:', oldestKey, ', value:', storage[oldestKey]);
-    console.log(storage);
     return storage[oldestKey];
   };
 
