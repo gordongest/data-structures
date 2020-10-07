@@ -13,13 +13,13 @@ var Stack = function() {
   // Implement the methods below
   someInstance.push = function(value) {
     storage[keyVal] = value;
-    keyIncrementor(keyVal);
+    keyIncrementor();
     // console.log(storage);
   };
 
   someInstance.pop = function() {
     delete storage[keyVal];
-    keyDecrementor(keyVal);
+    keyDecrementor();
     // console.log(storage);
     return storage[keyVal];
   };
