@@ -6,30 +6,31 @@ var Queue = function() {
 
   let keyVal = 0;
 
-  let runCounter = -1;
+  let size = 0;
+
+  let oldestKey = -1;
 
   var keyIncrementor = () => { keyVal++; };
-
-  var keyDecrementor = () => { keyVal--; };
 
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
     storage[keyVal] = value;
     keyIncrementor();
-    // console.log(storage);
+    size++;
   };
 
   someInstance.dequeue = function() {
-    delete storage[keyVal];
-    keyDecrementor();
+    delete storage[oldestKey];
+    oldestKey++;
+    size--;
+    console.log('key:', oldestKey, ', value:', storage[oldestKey]);
     console.log(storage);
-    return storage[keyVal];
-    // why is the above working? concrunCounteeptually it should be removing the last property, not the first property
+    return storage[oldestKey];
   };
 
   someInstance.size = function() {
-    return Math.max(keyVal, 0);
+    return Math.max(size, 0);
   };
 
   return someInstance;
