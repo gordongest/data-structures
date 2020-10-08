@@ -3,11 +3,8 @@ var Queue = function() {
 
   // Use an object with numeric keys to store values
   var storage = {};
-
   let keyVal = 0;
-
   let size = 0;
-
   let oldestKey = -1;
 
   // Implement the methods below
