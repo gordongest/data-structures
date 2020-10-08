@@ -23,6 +23,6 @@ class Stack {
   }
 
   size() {
-    return Math.max(this.stackSize,0);
+    return Math.max(this.stackSize, 0);
   }
 }
