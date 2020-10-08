@@ -9,7 +9,6 @@ var Queue = function() {
 
   _.extend(newQueue, queueMethods);
 
-  // console.log(newQueue);
   return newQueue;
 };
 
@@ -29,7 +28,5 @@ queueMethods.dequeue = function() {
 };
 
 queueMethods.size = function() {
-  console.log(this);
-  console.log(this.queueSize);
   return Math.max(this.queueSize, 0);
 };
