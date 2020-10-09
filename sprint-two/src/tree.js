@@ -32,3 +32,5 @@ start with a node
     if middle value of ends, make the new parent node
     if greater, new node goes to the right
     if lesser, new node goes to the left
+
+*/
