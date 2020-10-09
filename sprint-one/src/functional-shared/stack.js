@@ -1,4 +1,4 @@
-_var Stack = function() {
+var Stack = function() {
 
   var newStack = {};
 
