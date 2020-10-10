@@ -7,7 +7,7 @@ describe('hashTable', function() {
     hashTable = new HashTable();
   });
 
-  it('should have methods named "insert", "remove", and "retrieve', function() {
+  it('should have methods named "insert", "retrieve", and "remove"', function() {
     expect(hashTable.insert).to.be.a('function');
     expect(hashTable.remove).to.be.a('function');
     expect(hashTable.retrieve).to.be.a('function');
