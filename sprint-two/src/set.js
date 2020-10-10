@@ -10,6 +10,7 @@ setPrototype.add = function(item) {
 };
 
 setPrototype.contains = function(item) {
+  return _.contains(this._storage, item);
 };
 
 setPrototype.remove = function(item) {
