@@ -1,27 +1,20 @@
 
-
 // Instantiate a new graph
 var Graph = function() {
-
   this.nodes = [];
-
 };
-
-/*
-graph = {
-  nodes: []
-  edges: {}
-};
-*/
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
-  // i: number
-  // o: nothing
-  // c:
-  // e: node === undefined
 
-  // hl: pushes the input node to the array
+  /*
+  i: number
+  o: nothing
+  c:
+  e: node === undefined
+
+  hl: pushes the input node to the array
+  */
 
   let newNode = {
     val: node,
@@ -29,18 +22,19 @@ Graph.prototype.addNode = function(node) {
   };
 
   this.nodes.push(newNode);
-  // console.log(this.nodes);
-
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
-  // i: number
-  // o: boolean
-  // c:
-  // e: node === undefined
 
-  // hl: iterates through the array and checks to see if the query is present
+  /*
+  i: number
+  o: boolean
+  c:
+  e: node === undefined
+
+  hl: iterates through the array and checks to see if the query is present
+  */
 
   let result = false;
 
@@ -51,31 +45,32 @@ Graph.prototype.contains = function(node) {
   });
 
   return result;
-
 };
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-  // i: number
-  // o: nothing
-  // c:
-  // e:
 
-  // hl: checks if the passed in number (node) is in the array, and deletes it if so
+  /*
+  i: number
+  o: nothing
+  c:
+  e:
+
+  hl: checks if the passed in number (node) is in the array, and deletes it if so
+  */
 
   for (let i = 0; i < this.nodes.length; i++) {
     let currentNode = this.nodes[i];
     if (currentNode.val === node) {
-
       let targetNodeValue = currentNode.edges[0];
       _.each(this.nodes, function(connectedNode) {
-
-
+        if (connectedNode.val === targetNodeValue) {
+          connectedNode.edges[0] = undefined;
+        }
       });
       delete this.nodes[i];
     }
   }
-
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -102,7 +97,6 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
     }
   });
 
-  // console.log(result);
   return result;
 };
 
@@ -126,7 +120,6 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
       node.edges.push(fromNode);
     }
   });
-
 };
 
 // Remove an edge between any two specified (by value) nodes.
@@ -152,13 +145,11 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
       }
     }
   });
-
 };
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
   _.each(this.nodes, function(node) {
-    console.log(node);
     cb(node.val);
   });
 };
