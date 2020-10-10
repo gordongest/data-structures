@@ -42,16 +42,15 @@ Graph.prototype.contains = function(node) {
 
   // hl: iterates through the array and checks to see if the query is present
 
-  for (let i = 0; i < this.nodes.length; i++) {
-    let currentNode = this.nodes[i];
-    // console.log(currentNode);
-    if (currentNode === undefined) {
-      return false;
-    } else if (currentNode.val === node) {
-      return true;
+  let result = false;
+
+  _.each(this.nodes, function(currentNode) {
+    if (currentNode.val === node) {
+      result = true;
     }
-    return false;
-  }
+  });
+
+  return result;
 
 };
 
@@ -67,8 +66,12 @@ Graph.prototype.removeNode = function(node) {
   for (let i = 0; i < this.nodes.length; i++) {
     let currentNode = this.nodes[i];
     if (currentNode.val === node) {
-      // console.log(this.edges[node]);
-      // this.edges[node].removeEdge();
+
+      let targetNodeValue = currentNode.edges[0];
+      _.each(this.nodes, function(connectedNode) {
+
+
+      });
       delete this.nodes[i];
     }
   }
@@ -80,7 +83,7 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 
   /*
   i: number, number
-  o: nothing
+  o: boolean
   c:
   e:
 
@@ -89,19 +92,17 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 
   result = false;
 
-  for (let i = 0; i < this.nodes.length; i++) {
-    if (this.nodes[i].val === fromNode) {
-
-      if (this.nodes[i].edges.length) {
-        for (let j = 0; j < this.nodes[i].edges.length; j++) {
-          if (this.nodes[i].edges[j] === toNode) {
-            result = true;
-          }
+  _.each(this.nodes, function(currentNode) {
+    if (currentNode.val === fromNode) {
+      _.each(currentNode.edges, function(edge) {
+        if (edge === toNode) {
+          result = true;
         }
-      }
+      });
     }
-  }
+  });
 
+  // console.log(result);
   return result;
 };
 
@@ -117,25 +118,49 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
   hl: adds a number to the array at key 'edge' for both nodes
   */
 
-  for (let i = 0; i < this.nodes.length; i++) {
-    if (this.nodes[i].val === fromNode) {
-      this.nodes[i].edges.push(toNode);
+  _.each(this.nodes, function(node) {
+    if (node.val === fromNode) {
+      node.edges.push(toNode);
     }
-  }
-
-  console.log(this.nodes);
+    if (node.val === toNode) {
+      node.edges.push(fromNode);
+    }
+  });
 
 };
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
 
+  _.each(this.nodes, function(currentNode) {
+    if (currentNode.val === fromNode) {
+      if (currentNode.edges.length) {
+        for (let j = 0; j < currentNode.edges.length; j++) {
+          if (currentNode.edges[j] === toNode) {
+            delete currentNode.edges[j];
+          }
+        }
+      }
+    }
+    if (currentNode.val === toNode) {
+      if (currentNode.edges.length) {
+        for (let j = 0; j < currentNode.edges.length; j++) {
+          if (currentNode.edges[j] === fromNode) {
+            delete currentNode.edges[j];
+          }
+        }
+      }
+    }
+  });
+
 };
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
-  // cb(this.nodes);
-  // console.log(this.nodes);
+  _.each(this.nodes, function(node) {
+    console.log(node);
+    cb(node.val);
+  });
 };
 
 /*

@@ -40,7 +40,9 @@ describe('graph', function() {
     graph.addNode(4);
     graph.addNode(5);
     graph.addEdge(5, 4);
+    // console.log('hi');
     expect(graph.hasEdge(4, 5)).to.equal(true);
+    // console.log('No');
     graph.removeEdge(5, 4);
     expect(graph.hasEdge(4, 5)).to.equal(false);
   });
