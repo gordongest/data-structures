@@ -1,5 +1,3 @@
-
-
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
@@ -43,13 +41,11 @@ HashTable.prototype.remove = function(k) {
   }
 };
 
-
-
 /*
  * Complexity: What is the time complexity of the above functions?
-insert: O(1)
-retrieve: O()
-remove: O()
+ insert: O(1)
+ retrieve: best Case = O(1) worst Case = O(n)
+ remove: best Case = O(1) worst Case = O(n)
  */
 
 

@@ -1,9 +1,78 @@
 var BinarySearchTree = function(value) {
+
+  this.value = value;
+  this.left = null;
+  this.right = null;
+
 };
 
+BinarySearchTree.prototype.insert = function(value) {
+
+  var recursiveBrancher = function(currentNode, newNode) {
+    if (newNode > currentNode.value) {
+      if (currentNode.right === null) {
+        currentNode.right = new BinarySearchTree(newNode);
+      } else {
+        recursiveBrancher(currentNode.right, newNode);
+      }
+    } else if (newNode < currentNode.value) {
+      if (currentNode.left === null) {
+        currentNode.left = new BinarySearchTree(newNode);
+      } else {
+        recursiveBrancher(currentNode.left, newNode);
+      }
+    }
+  };
+
+  recursiveBrancher(this, value);
+};
+
+BinarySearchTree.prototype.contains = function(value) {
+
+  let result = false;
+
+  var recursiveFinder = function(currentNode, query) {
+    if (query === currentNode.value) {
+      result = true;
+    } else if (query > currentNode.value) {
+      if (currentNode.right !== null) {
+        recursiveFinder(currentNode.right, query);
+      }
+    } else if (query < currentNode.value) {
+      if (currentNode.left !== null) {
+        recursiveFinder(currentNode.left, query);
+      }
+    }
+  };
+
+  recursiveFinder(this, value);
+
+  return result;
+};
+
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
+
+  var recursiveIterator = function(location, func) {
+    func(location.value);
+    if (location.left !== null) {
+      recursiveIterator(location.left, func);
+    }
+    if (location.right !== null) {
+      recursiveIterator(location.right, func);
+    }
+  };
+
+  recursiveIterator(this, cb);
+};
+
+/*
+ What is the time complexity of the above functions?
+Use case: Given a list of a million numbers, write a function that takes a new number and returns the closest number in the list using your BST. Profile this against the same operation using an array.
+*/
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ all should be O(log n)
  */
 
 /*
