@@ -1,13 +1,20 @@
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = []; // fix me
+  set._storage;
+  set.temp = [];
   return set;
 };
 
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  this._storage.push(item);
+  // if (!_.contains(this._storage, item)) {
+  //   this._storage.push(item);
+  // }
+
+  this.temp.push(item);
+
+  this._storage = _.uniq(this.temp);
 };
 
 setPrototype.contains = function(item) {
@@ -25,4 +32,7 @@ setPrototype.remove = function(item) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ add: O(n);
+ contains: O(n);
+ remove: O(n);
  */
